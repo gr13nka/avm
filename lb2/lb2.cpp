@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 
 template<typename T>
 unsigned long long printBinaryNum(T num)
@@ -79,12 +80,26 @@ unsigned long long cycle_move(unsigned long long bits)
 
 	return  bits;
 }
+struct text_info
+{unsigned char 
+winright,  winbottom;   /* столбец, строка правого нижнего угла */
+attribute, normattr;      /* атрибуты окна*/
+currmode;                     /* текущий режим работы видеоадаптера	*/
+screenheight;               /* полная высота экрана	*/
+screenwidth;                /* полная ширина экрана	*/
+curx, cury; };                /* строка, столбец текущей позиции курсора	*/
 
 int main() {
     double d = 15.375;
     long l = 123465789;
 	unsigned long long d_result;
 	unsigned long long l_result;
+	int x1,y1 = 1;
+	int y2 = 25;
+	int x2 = 80;
+
+	window(x1,y1,x2,y2);
+
 
 	std::cout <<"Enter double " << '\n';
 	std::cin >> d;
