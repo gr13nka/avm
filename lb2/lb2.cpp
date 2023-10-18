@@ -89,6 +89,20 @@ screenheight;               /* полная высота экрана	*/
 screenwidth;                /* полная ширина экрана	*/
 curx, cury; };                /* строка, столбец текущей позиции курсора	*/
 
+#include < dos. h >
+void scroll (int direction, char l_row, char l_col, char r_row, char r_col, char attr)
+      { 
+union REGS r;
+            	if (direction)
+{ r. h. a= 1; r.h. ah=direction; }
+ else
+{r.h.al=0; r.h.ah=6; }
+ r.h.ch =  l_row; r.h.cl= l_col; r.h.dh = r_row;
+ r.h.dl= r_col; r.h.bh=attr; 
+ int86(0x10,&r,&r);
+      }
+
+
 int main() {
     double d = 15.375;
     long l = 123465789;
@@ -99,7 +113,14 @@ int main() {
 	int x2 = 80;
 
 	window(x1,y1,x2,y2);
+	gettextinfo( struct text_info *t);
 
+	scroll(ENTIRE,0,0,24, 79,0x07);
+
+	//perimetr 
+	scroll (ENTIRE, 0,0, 24, 79, color); 
+	scroll(ENTIRE, 1, 1, 23, 78, 0x07);
+	
 
 	std::cout <<"Enter double " << '\n';
 	std::cin >> d;
